@@ -2,12 +2,252 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>The Flash: Home</title>
     <meta name="viewport" content="width=divice-width,initial-scale=1"/>
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel=stylesheet/>
-    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}" />
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.png') }}" />
+    <style>
+        .body{
+            background-color:gray;
+            padding-top: 70px;
+        }
+        .navbar{
+            margin:0;
+        }
+        .brand-image{
+            max-height: 2.3em;
+            max-width: 3em;
+            display: inline;
+            padding-bottom: 12px;
+        }
+        .large-image{
+            background-image: url("{{ url_for('static',filename='images/flash_full.jpg') }}");
+            min-height: 35em;
+            background-size: cover;
+            background-position:center;
+            margin:0;
+        }
+        .videos{
+            background-color:rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
 </head>
 <body>
 
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url_for('static', filename='images/flash_logo.png')}}" alt="Brand" class="brand-image"/>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#">Galary</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#login">
+                          Login
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#signup">
+                          Sign Up
+                        </a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- /nav -->
+
+    <!-- main image -->
+    <div class="container-fluid large-image"></div>
+
+    <!-- Teasers and Trailers -->
+    <div class="container-fluid" >
+        <p class="lead"><h3>Teasers and Trailers</h3></p>
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail" data-toggle="modal" data-target="#video1">
+                  <img src="http://img.youtube.com/vi/5CQZiHonkcw/0.jpg"  alt="New Season">
+                </a>
+                <div class="caption"><h4>New Season</h4></div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail" data-toggle="modal" data-target="#video2">
+                  <img src="http://img.youtube.com/vi/BCwKEUWcJME/0.jpg"  alt="New Season">
+                </a>
+                <div class="caption"><h4>Infantino Street</h4></div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail" data-toggle="modal" data-target="#video3">
+                  <img src="http://img.youtube.com/vi/PGBhvCJdJX4/0.jpg"  alt="New Season">
+                </a>
+                <div class="caption"><h4> Finish Line Scene</h4></div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail" data-toggle="modal" data-target="#video4">
+                  <img src="http://img.youtube.com/vi/6j8A-N_KigM/0.jpg"  alt="New Season">
+                </a>
+                <div class="caption"><h4>Season 3 Finale | Sizzle</h4></div>
+            </div>
+
+        </div>
+        <p><a href="https://www.youtube.com/watch?v=PuNDvJ82iRY&list=PL6abPzY300GUKkRliHvQnVccYlYOqLpix">Load More...</a></p>
+    </div>
+    <!-- / Teasers and Trailers -->
+
+    <!-- Behind the scenes -->
+    <!-- Behind the scenes -->
+
+
+
+    <!-- modal login -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="login">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Login</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-inline">
+              <div class="form-group">
+                <label class="sr-only" for="LoginEmail">Email address</label>
+                <input type="email" class="form-control" id="LoginEmail" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="LoginPassword">Password</label>
+                <input type="password" class="form-control" id="LoginPassword" placeholder="Password">
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">Remember
+                </label>
+              </div>
+              <button type="submit" class="btn btn-default">Log in</button>
+            </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- modal sign up -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="signup">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Sign Up</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="inputUsername" class="col-sm-2 control-label">UserName</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputUsername" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="reinputPassword" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="reinputPassword" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Sign Up</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- model video1 -->
+    <div class="modal fade " tabindex="-1" role="dialog" id="video1">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body videos">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/5CQZiHonkcw" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- model video2 -->
+    <div class="modal fade videos" tabindex="-1" role="dialog" id="video2">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+          <div class="modal-body  videos">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/BCwKEUWcJME" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- model video3 -->
+    <div class="modal fade videos" tabindex="-1" role="dialog" id="video3">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body  videos">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/PGBhvCJdJX4" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+        <!-- model video4 -->
+    <div class="modal fade videos" tabindex="-1" role="dialog" id="video4">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body  videos">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/6j8A-N_KigM" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </body>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 </html>

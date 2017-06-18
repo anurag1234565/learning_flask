@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>The Flash: Home</title>
+    <title>The Flash: Gallery</title>
     <meta name="viewport" content="width=divice-width,initial-scale=1"/>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.png') }}" />
     <style>
         body{
             background-color:gray;
-            padding-top: 50px;
+            padding-top: 70px;
         }
         .navbar{
             margin:0;
@@ -20,26 +20,10 @@
             display: inline;
             padding-bottom: 12px;
         }
-        .large-image{
-            background-image: url("{{ url_for('static',filename='images/flash_full.jpg') }}");
-            min-height: 35em;
-            background-size: cover;
-            background-position:center;
-            margin:0;
-        }
-        .videos{
-            background-color:rgba(0, 0, 0, 0.3);
-        }
-        .copyleft {
-          display:inline-block;
-          transform: rotate(180deg);
-        }
-
     </style>
 </head>
 <body>
-
-    <!-- navbar -->
+<!-- navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,13 +34,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="{{ url_for('static', filename='images/flash_logo.png')}}" alt="Brand" class="brand-image"/>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="/gallery">Gallery</a></li>
+                    <li class="active"><a href="/gallery">Gallery</a></li>
                     <li><a href="#">Community</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -81,46 +65,20 @@
         </div>
     </nav>
     <!-- /nav -->
-
-    <!-- main image -->
-    <div class="container-fluid large-image"></div>
-
-    <!-- Teasers and Trailers -->
-    <div class="container-fluid" >
-        <p class="lead"><h3>Teasers and Trailers</h3></p>
-        <div class="row">
-
-            {% for video in videos:%}
+    <div class="container-fluid">
+        <div class="row" >
+            {% for image in images:%}
             <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail" data-toggle="modal" data-target="#video" data-code="{{ video['code'] }}">
-                  <img src="http://img.youtube.com/vi/{{ video['code'] }}/0.jpg"  alt="New Season">
+                <a href="#" class="thumbnail" data-toggle="modal" data-target="#image" data-url="{{ image['link'] }}">
+                  <img src="{{ image['link'] }}"  class="img-responsive">
                 </a>
-                <div class="caption"><h4>{{ video['title'] }}</h4></div>
+                <div class="caption"><h4>{{ image['description'] }}</h4></div>
             </div>
             {% endfor %}
         </div>
-        <p><a style="color:black" href="https://www.youtube.com/watch?v=PuNDvJ82iRY&list=PL6abPzY300GUKkRliHvQnVccYlYOqLpix">
-            See more on CW ...
-        </a></p>
-    </div>
-    <!-- / Teasers and Trailers -->
-
-    <!-- Behind the scenes -->
-    <!-- Behind the scenes -->
-
-    <div class="navbar navbar-bottom navbar-default">
-        <div class="container-fluid">
-            <p class="navbar-left navbar-text">
-                <span class="copyleft">&copy;</span> 2017 | Anurag Regmi
-            </p>
-            <p class="navbar-text navbar-right">
-                View source code on <a class="navbar-liink" href="github.com/anurag1234565/learning_flask">github.</a>
-            </p>
-        </div>
     </div>
 
-
-    <!-- modal login -->
+<!-- modal login -->
     <div class="modal fade" tabindex="-1" role="dialog" id="login">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -196,33 +154,32 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-       <!-- model video -->
-    <div class="modal fade " tabindex="-1" role="dialog" id="video">
-      <div class="modal-dialog" role="document">
+       <!-- model image -->
+    <div class="modal fade " tabindex="-1" role="dialog" id="image">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-body videos">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+              <img class="image-responsive" style="width:100%" src="" />
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
 </body>
+
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 <script type="text/javascript">
-    $('#video').on('show.bs.modal', function (event) {
+    $('#image').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal
-      var videoCode = button.data('code') // Extract info from data-* attributes
+      var url = button.data('url') // Extract info from data-* attributes
 
       // updating
       var modal = $(this)
-      var url = "https://www.youtube.com/embed/" + videoCode
-      var iframe = modal.find('.modal-body iframe');
-      if( iframe.attr("src") != url ){
-            iframe.attr("src",url)
+      var img = modal.find('.modal-body img');
+      if( img.attr("src") != url ){
+            img.attr("src",url)
       }
 
     })

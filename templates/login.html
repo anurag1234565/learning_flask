@@ -1,0 +1,29 @@
+{% extends "header.html" %}
+
+{% block title %}
+The Flash: Login
+{% endblock %}
+
+{% block body %}
+
+    <form method="post" action="">
+        <h3>Login</h3>
+        <div class="form-group">
+            <label for="LoginEmail">Email address</label>
+            <input type="email" style="width:80%" class="form-control" id="LoginEmail" placeholder="Email"
+                   name="email" value="{{ request.form.email }}">
+        </div>
+        <div class="form-group">
+            <label for="LoginPassword">Password</label>
+            <input type="password" style="width:80%" class="form-control" id="LoginPassword" placeholder="Password"
+                   name = "password" value="{{ request.form.password }}">
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox">Remember
+            </label>
+        </div>
+        <input type="submit" class="btn btn-default" value="Login">
+    </form>
+
+{% endblock %}

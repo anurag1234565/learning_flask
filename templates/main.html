@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>The Flash: Home</title>
-    <meta name="viewport" content="width=divice-width,initial-scale=1"/>
+    <meta content="width=device-width,initial-scale=1" name=viewport>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.png') }}" />
     <style>
         body{
             background-color:gray;
             padding-top: 50px;
+            min-height: 100%;
         }
         .navbar{
             margin:0;
@@ -37,9 +38,7 @@
 
     </style>
 </head>
-<body>
-
-    <!-- navbar -->
+<header>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -62,25 +61,39 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#" data-toggle="modal" data-target="#login">
-                          Login
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                            Login
                         </a>
                     </li>
                     <li>
                         <a href="#" data-toggle="modal" data-target="#signup">
-                          Sign Up
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                             Sign Up
                         </a>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                <form class="navbar-form navbar-right border">
+                    <div class="form-group"  >
+                        <div class="input-group">
+                            <div class="input-group col-lg-12 center-block">
+                                <input type="text" class="form-control" placeholder="Search" >
+                            </div>
+                            <div class="input-group-btn navbar-btn">
+                                <button type="submit" class="btn btn-default"  >
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Search</button>
                 </form>
             </div>
         </div>
     </nav>
     <!-- /nav -->
+</header>
+<body>
+
+    <!-- navbar -->
 
     <!-- main image -->
     <div class="container-fluid large-image"></div>
@@ -108,16 +121,6 @@
     <!-- Behind the scenes -->
     <!-- Behind the scenes -->
 
-    <div class="navbar navbar-bottom navbar-default">
-        <div class="container-fluid">
-            <p class="navbar-left navbar-text">
-                <span class="copyleft">&copy;</span> 2017 | Anurag Regmi
-            </p>
-            <p class="navbar-text navbar-right">
-                View source code on <a class="navbar-liink" href="github.com/anurag1234565/learning_flask">github.</a>
-            </p>
-        </div>
-    </div>
 
 
     <!-- modal login -->
@@ -129,21 +132,24 @@
             <h4 class="modal-title">Login</h4>
           </div>
           <div class="modal-body">
-            <form class="form-inline">
+            <form class="form-inline" method="post" action="/login/">
               <div class="form-group">
                 <label class="sr-only" for="LoginEmail">Email address</label>
-                <input type="email" class="form-control" id="LoginEmail" placeholder="Email">
+                <input type="email" class="form-control" id="LoginEmail" placeholder="Email"
+                       name="email" value="{{ request.form.email }}">
               </div>
               <div class="form-group">
                 <label class="sr-only" for="LoginPassword">Password</label>
-                <input type="password" class="form-control" id="LoginPassword" placeholder="Password">
+                <input type="password" class="form-control" id="LoginPassword" placeholder="Password"
+                    name = "password" value="{{ request.form.password }}"
+                >
               </div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox">Remember
                 </label>
               </div>
-              <button type="submit" class="btn btn-default">Log in</button>
+              <input type="submit" class="btn btn-default" value="Login">
             </form>
           </div>
         </div><!-- /.modal-content -->
@@ -200,9 +206,11 @@
     <div class="modal fade " tabindex="-1" role="dialog" id="video">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-body videos">
+          <div class="modal-body  videos">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe  class="embed-responsive-item" src="" frameborder="0" allowfullscreen></iframe>
+              </div>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -210,6 +218,18 @@
     <!-- /.modal -->
 
 </body>
+
+<footer class="navbar navbar-bottom navbar-default">
+    <div class="container-fluid">
+        <p class="navbar-left navbar-text">
+            <span class="copyleft">&copy;</span> 2017 | Anurag Regmi
+        </p>
+        <p class="navbar-text navbar-right">
+            View source code on <a class="navbar-liink" href="github.com/anurag1234565/learning_flask">github.</a>
+        </p>
+    </div>
+</footer>
+
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 <script type="text/javascript">
